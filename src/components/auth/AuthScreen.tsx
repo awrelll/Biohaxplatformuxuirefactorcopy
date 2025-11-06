@@ -3,6 +3,7 @@ import { Mail, Lock, Zap, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 interface AuthScreenProps {
   onAuth: () => void;
@@ -42,9 +43,11 @@ export default function AuthScreen({ onAuth, onBack }: AuthScreenProps) {
             onClick={onBack}
             className="inline-flex items-center gap-3 px-6 py-3 rounded-full neo-card mb-8 hover:scale-105 transition-transform"
           >
-            <div className="w-10 h-10 rounded-xl gradient-spectrum flex items-center justify-center">
-              <Zap className="w-6 h-6 text-white" />
-            </div>
+            <ImageWithFallback 
+              src="https://images.unsplash.com/photo-1724525647271-e23385a7e19e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9oYWNraW5nJTIwRE5BJTIwaGVsaXglMjBsb2dvfGVufDF8fHx8MTc2MjQzNTEzNnww&ixlib=rb-4.1.0&q=80&w=1080" 
+              alt="BioHax Logo" 
+              className="w-10 h-10 rounded-xl object-cover"
+            />
             <span className="text-2xl font-bold text-ink">BioHax</span>
           </button>
 

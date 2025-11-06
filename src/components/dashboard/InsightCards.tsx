@@ -53,7 +53,7 @@ export default function InsightCards() {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-neutral-900">AI-Powered Insights</h2>
+        <h2 className="text-neutral-900">Dual-Engine AI Insights</h2>
         <Badge variant="outline">4 New</Badge>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

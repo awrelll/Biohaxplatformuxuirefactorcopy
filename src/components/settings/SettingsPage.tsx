@@ -17,7 +17,7 @@ const pricingPlans = [
     features: [
       'Up to 20 biomarkers',
       'Basic wearable integrations',
-      'Weekly AI insights',
+      'Weekly dual-engine insights (OpenBioLLM + Gemini)',
       'Community access',
       'Manual data entry',
     ],
@@ -32,10 +32,10 @@ const pricingPlans = [
     features: [
       'Up to 150 biomarkers',
       'All wearable integrations',
-      'Daily AI insights',
-      'Advanced protocols',
+      'Daily dual-engine insights (OpenBioLLM + Gemini)',
+      'Advanced protocols with cross-checked recommendations',
       'Practitioner collaboration',
-      'Lab result parsing',
+      'Lab result parsing with dual AI verification',
       'Priority support',
     ],
     color: 'neural' as const,

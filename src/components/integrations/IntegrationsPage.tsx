@@ -1,7 +1,7 @@
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { Link2, Check, X, RefreshCw, AlertCircle, Activity, FileText, Dna, Microscope, Heart, Smartphone, Sparkles, Upload, Shield } from 'lucide-react';
+import { Link2, Check, X, RefreshCw, AlertCircle, Activity, FileText, Dna, Microscope, Heart, Smartphone, Sparkles, Upload, Shield, Star } from 'lucide-react';
 
 const integrations = [
   {
@@ -31,27 +31,29 @@ const integrations = [
   },
   {
     id: 'trueage',
-    name: 'TruAge Testing',
+    name: 'TruAge Testing (TruDiagnostic)',
     category: 'Epigenetic',
-    description: 'DNA methylation biological age testing',
+    description: '1M+ methylation sites analyzed for biological age & organ-specific aging scores',
     icon: Dna,
     status: 'connected',
     lastSync: '2 months ago',
-    metrics: ['Biological Age', 'Pace of Aging', 'Immune Age', 'Eye Age', 'Memory Age'],
+    metrics: ['Biological Age', 'Pace of Aging', 'Immune Age', 'Brain Age', 'Heart Age', 'Telomere Length', 'Inflammatory Age'],
     color: 'bio',
-    dataPoints: 'Epigenetic analysis',
+    dataPoints: 'Epigenetic DNA methylation analysis',
+    premium: true,
   },
   {
     id: 'gi-effects',
-    name: 'GI Effects (Genova)',
+    name: 'Geneva GI Effects Test',
     category: 'Microbiome',
-    description: 'Comprehensive gut health and microbiome analysis',
+    description: 'Advanced gut diagnostics using PCR, cultures & microscopy for 5 key biomarker areas',
     icon: Heart,
     status: 'connected',
     lastSync: '1 month ago',
-    metrics: ['Microbiome Diversity', 'Pathogen Detection', 'Digestive Function', 'Inflammation', 'SCFA Production'],
+    metrics: ['Maldigestion Markers', 'Inflammation Status', 'Dysbiosis Analysis', 'Metabolite Imbalance', 'Pathogen/Infection Detection', 'Methanogens & H2S Producers'],
     color: 'solar',
-    dataPoints: 'Comprehensive stool analysis',
+    dataPoints: 'Comprehensive stool profile with PCR analysis',
+    premium: true,
   },
   {
     id: 'health-platforms',
@@ -183,6 +185,12 @@ export default function IntegrationsPage() {
                             <Badge className="bg-electric text-void">
                               <Sparkles className="w-3 h-3 mr-1" />
                               Practitioner Managed
+                            </Badge>
+                          )}
+                          {integration.premium && (
+                            <Badge className="bg-gradient-to-r from-neural to-bio text-white">
+                              <Star className="w-3 h-3 mr-1" />
+                              Premium Test
                             </Badge>
                           )}
                         </div>
@@ -384,6 +392,75 @@ export default function IntegrationsPage() {
                 );
               })}
 
+            {/* Premium Testing Deep Dive */}
+            <div className="neo-card-neural p-8 border-2 border-neural">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-14 h-14 rounded-xl gradient-neural flex items-center justify-center flex-shrink-0">
+                  <Dna className="w-7 h-7 text-void" />
+                </div>
+                <div>
+                  <h3 className="mb-2">Premium Test Synergy</h3>
+                  <div className="tag text-neural inline-block">Biohacking Intelligence</div>
+                </div>
+              </div>
+              
+              <p className="text-steel mb-6 leading-relaxed">
+                <strong className="text-neural">TrueAge + Geneva GI Effects</strong> create the ultimate biohacking diagnostic combo. Our dual-engine AI (OpenBioLLM + Google Gemini) cross-references your epigenetic aging markers with gut health data to generate precision protocols.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="p-4 bg-neural/5 rounded-xl border border-neural/20">
+                  <h4 className="text-sm mb-2 text-neural">Longitudinal Tracking</h4>
+                  <p className="text-xs text-steel leading-relaxed">
+                    Track how interventions affect your biological age and gut health over time. See correlations between gut inflammation and systemic aging.
+                  </p>
+                </div>
+                <div className="p-4 bg-bio/5 rounded-xl border border-bio/20">
+                  <h4 className="text-sm mb-2 text-bio">Personalized Stacks</h4>
+                  <p className="text-xs text-steel leading-relaxed">
+                    AI generates supplement recommendations based on your specific dysbiosis patterns and aging markers—no generic protocols.
+                  </p>
+                </div>
+                <div className="p-4 bg-electric/5 rounded-xl border border-electric/20">
+                  <h4 className="text-sm mb-2 text-electric">Early Detection</h4>
+                  <p className="text-xs text-steel leading-relaxed">
+                    Catch dysfunction signals years before symptoms appear. Methylation patterns reveal aging acceleration before biomarkers shift.
+                  </p>
+                </div>
+                <div className="p-4 bg-pulse/5 rounded-xl border border-pulse/20">
+                  <h4 className="text-sm mb-2 text-pulse">Root Cause Analysis</h4>
+                  <p className="text-xs text-steel leading-relaxed">
+                    Connect gut pathogens to systemic inflammation, mood issues, skin problems, and autoimmune-like symptoms with precision.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-6 bg-gradient-to-r from-neural/10 to-bio/10 rounded-xl border-2 border-dashed border-neural/30 mb-6">
+                <h4 className="text-sm mb-3 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-neural" />
+                  Example Workflow
+                </h4>
+                <ol className="space-y-2 text-xs text-steel">
+                  <li><strong>1.</strong> Upload TrueAge results → AI identifies accelerated organ-specific aging (e.g., immune age +5 years)</li>
+                  <li><strong>2.</strong> Upload GI Effects → Reveals chronic gut inflammation and dysbiosis patterns</li>
+                  <li><strong>3.</strong> Dual AI cross-checks → Links gut inflammation to accelerated immune aging</li>
+                  <li><strong>4.</strong> Protocol generated → Targeted probiotics, anti-inflammatory diet, fasting strategies</li>
+                  <li><strong>5.</strong> Re-test in 6 months → Track biological age reversal and gut healing</li>
+                </ol>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Button>
+                  <Upload className="w-5 h-5 mr-2" />
+                  Upload TrueAge Results
+                </Button>
+                <Button variant="outline">
+                  <Upload className="w-5 h-5 mr-2" />
+                  Upload GI Effects Results
+                </Button>
+              </div>
+            </div>
+
             <div className="neo-card-electric p-8">
               <div className="flex items-start gap-4">
                 <AlertCircle className="w-6 h-6 text-electric flex-shrink-0 mt-1" />
@@ -436,7 +513,7 @@ export default function IntegrationsPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-electric">•</span>
-                    <span>GET /api/v1/insights - Fetch AI insights</span>
+                    <span>GET /api/v1/insights - Fetch dual-engine AI insights (OpenBioLLM + Gemini)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-electric">•</span>

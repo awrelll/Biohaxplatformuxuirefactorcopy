@@ -1,8 +1,8 @@
 # 🧬 BioHax Performance OS
 
-**Your personalized longevity system powered by AI**
+**Your personalized longevity system powered by Dual-Engine AI**
 
-A revolutionary platform that unifies labs & wearables integration, AI-powered protocols, practitioner collaboration tools, continuous biofeedback monitoring, and community engagement with privacy-first controls.
+A revolutionary platform that unifies labs & wearables integration, dual-engine AI protocols (OpenBioLLM + Google Gemini), practitioner collaboration tools, continuous biofeedback monitoring, and community engagement with privacy-first controls.
 
 ![Design System](https://img.shields.io/badge/Design_System-100%25-success)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue)
@@ -13,12 +13,17 @@ A revolutionary platform that unifies labs & wearables integration, AI-powered p
 
 ### 🎯 Core Features
 - **150+ Biomarker Tracking** - Comprehensive health data monitoring
-- **AI-Powered Protocols** - Personalized recommendations based on your data
+- **Dual-Engine AI Protocols** - Cross-verified recommendations using OpenBioLLM + Google Gemini
+- **Premium Testing Integration** - TrueAge epigenetic testing & Geneva GI Effects analysis
 - **Practitioner Workspace** - Collaborative tools for health professionals
 - **Wearables Integration** - Connect WHOOP, Oura, Apple Health, Google Health Connect
 - **Lab Results Parsing** - Automatic analysis of blood work and genetic testing
 - **Community Feed** - Connect with longevity enthusiasts
 - **Privacy-First** - HIPAA/GDPR compliant with 256-bit encryption
+
+### 🧬 Premium Diagnostic Tests
+- **TrueAge Testing (TruDiagnostic)** - Analyze 1M+ DNA methylation sites to determine biological age vs chronological age, with organ-specific aging scores (brain, heart, liver, immune, hormone), telomere length analysis, and Pace of Aging metrics
+- **Geneva GI Effects Test** - Advanced gut health diagnostics using PCR, cultures, and microscopy to analyze Maldigestion, Inflammation, Dysbiosis, Metabolite Imbalance, and Infections with pathogen subtyping and actionable protocols
 
 ### 🎨 Design System
 - **Neo-Brutalist Aesthetic** - Bold, modern, data-driven visual language
@@ -120,22 +125,29 @@ biohax-performance-os/
 ### Explorer (Free)
 - Up to 20 biomarkers
 - Basic wearable integrations
-- Weekly AI insights
+- Weekly dual-engine insights (OpenBioLLM + Gemini)
 - Community access
+- Manual data entry
 
-### Biohacker ($49/mo)
+### Biohacker ($20/mo)
 - Up to 150 biomarkers
 - All wearable integrations
-- Daily AI insights
+- Daily dual-engine insights (OpenBioLLM + Gemini)
+- Advanced protocols with cross-checked recommendations
 - Practitioner collaboration
-- Lab result parsing
+- Lab result parsing with dual AI verification
+- **TrueAge & Geneva GI Effects integration**
+- Priority support
 
-### Longevity Pro ($99/mo)
+### Longevity Pro ($50/mo)
 - Unlimited biomarkers
 - White-label options
 - Client management suite
 - API access
-- Dedicated support
+- **Premium test result interpretation with longitudinal tracking**
+- **Personalized supplement stacks based on epigenetic + gut markers**
+- Dedicated account manager
+- 24/7 priority support
 
 ## 🔐 Privacy & Security
 
@@ -156,6 +168,12 @@ Fully responsive across:
 ## 🤝 Contributing
 
 This is a demonstration project showcasing modern React + TypeScript patterns and design system implementation.
+
+## 📖 Documentation
+
+- **[Premium Tests Integration Guide](./PREMIUM_TESTS_GUIDE.md)** - Comprehensive guide for TrueAge & Geneva GI Effects testing
+- **[Multilingual Guide](./MULTILINGUAL_GUIDE.md)** - Translation and localization documentation
+- **[Deployment Guide](./DEPLOYMENT_GUIDE.md)** - Production deployment instructions
 
 ## 📄 License
 

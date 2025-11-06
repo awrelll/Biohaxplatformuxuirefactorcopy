@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Zap, Activity, Users, Brain, TrendingUp, Lock, CheckCircle2, Menu, X, Moon, Sun, Database, Sparkles, Calendar, Bell, BookOpen, Briefcase, ArrowRight, Shield, Gauge, Star } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { useTranslation } from '../../lib/i18n/LanguageContext';
+import { LanguageSwitcher } from '../layout/LanguageSwitcher';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -10,6 +13,7 @@ interface LandingPageProps {
 
 export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const t = useTranslation();
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -28,12 +32,14 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button onClick={() => scrollToSection('hero')} className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl gradient-spectrum flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
+              <ImageWithFallback 
+                src="https://images.unsplash.com/photo-1724525647271-e23385a7e19e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9oYWNraW5nJTIwRE5BJTIwaGVsaXglMjBsb2dvfGVufDF8fHx8MTc2MjQzNTEzNnww&ixlib=rb-4.1.0&q=80&w=1080" 
+                alt="BioHax Logo" 
+                className="w-10 h-10 rounded-xl object-cover"
+              />
               <div className="flex items-center gap-2">
-                <span className="text-xl font-bold text-ink">BioHax</span>
-                <span className="tag text-steel">PERFORMANCE OS</span>
+
+                <span className="tag text-steel">Human Performance OS</span>
               </div>
             </button>
 
@@ -55,6 +61,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 
             {/* Desktop Actions */}
             <div className="hidden md:flex items-center gap-4">
+              <LanguageSwitcher />
               <button 
                 onClick={toggleTheme}
                 className="w-10 h-10 rounded-xl bg-pearl hover:bg-cloud transition-colors flex items-center justify-center"
@@ -62,11 +69,11 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 {theme === 'light' ? <Moon className="w-5 h-5 text-steel" /> : <Sun className="w-5 h-5 text-steel" />}
               </button>
               <Button variant="ghost" onClick={onSignIn}>
-                Sign In
+                {t.auth.signIn}
               </Button>
               <Button onClick={onGetStarted}>
                 <Zap className="w-4 h-4 mr-2" />
-                Start Free Trial
+                {t.landing.ctaPrimary}
               </Button>
             </div>
 
@@ -79,6 +86,9 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               </SheetTrigger>
               <SheetContent side="right" className="w-80">
                 <div className="flex flex-col gap-6 pt-8">
+                  <div className="flex justify-end mb-4">
+                    <LanguageSwitcher />
+                  </div>
                   <button onClick={() => scrollToSection('features')} className="text-left font-semibold text-ink hover:text-electric transition-colors">
                     Features
                   </button>
@@ -93,11 +103,11 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                   </button>
                   <div className="border-t border-cloud pt-6 space-y-3">
                     <Button variant="outline" onClick={onSignIn} className="w-full">
-                      Sign In
+                      {t.auth.signIn}
                     </Button>
                     <Button onClick={onGetStarted} className="w-full">
                       <Zap className="w-4 h-4 mr-2" />
-                      Start Free Trial
+                      {t.landing.ctaPrimary}
                     </Button>
                   </div>
                 </div>
@@ -112,25 +122,24 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         <div className="max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-electric/10 border border-electric/20 mb-8">
             <Sparkles className="w-4 h-4 text-electric" />
-            <span className="text-sm font-semibold text-electric">AI-Powered Longevity Platform</span>
+            <span className="text-sm font-semibold text-electric">{t.landing.tagline}</span>
           </div>
 
           <h1 className="mb-6 max-w-4xl mx-auto">
-            Your Unified Longevity & Performance Command Center
+            {t.landing.mainHeading}
           </h1>
 
           <p className="text-xl text-steel mb-12 max-w-3xl mx-auto leading-relaxed">
-            Consolidate wearables, biomarkers, and AI coaching into one intelligent platform. 
-            Turn raw data into actionable protocols for peak human performance.
+            {t.landing.subHeading}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
             <Button size="lg" onClick={onGetStarted} className="shadow-2xl">
               <Zap className="w-5 h-5 mr-2" />
-              Start Free Trial
+              {t.landing.ctaPrimary}
             </Button>
             <Button size="lg" variant="outline" onClick={() => scrollToSection('features')}>
-              See How It Works
+              {t.landing.ctaSecondary}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
@@ -166,7 +175,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             <div className="tag text-steel mb-3">CORE CAPABILITIES</div>
             <h2 className="mb-4">Everything you need for human optimization</h2>
             <p className="text-xl text-steel max-w-2xl mx-auto">
-              From data integration to AI-powered recommendations, we've built the complete toolkit
+              From data integration to dual-engine AI recommendations (OpenBioLLM + Google Gemini cross-verification), we've built the complete toolkit
             </p>
           </div>
 
@@ -179,14 +188,14 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             />
             <FeatureCard
               icon={Brain}
-              title="Adaptive Insight Engine"
-              description="OpenBioLLM analyzes trends across 150+ biomarkers to surface actionable recommendations and early warning signals."
+              title="Dual-Engine Insight System"
+              description="OpenBioLLM and Google Gemini cross-verify trends across 150+ biomarkers to surface actionable recommendations and early warning signals with maximum accuracy."
               color="neural"
             />
             <FeatureCard
               icon={Calendar}
               title="Personalized Daily Protocols"
-              description="AI-generated routines for nutrition, supplements, exercise, and recovery tailored to your current state and goals."
+              description="Dual-engine AI routines (OpenBioLLM + Gemini) for nutrition, supplements, exercise, and recovery tailored to your current state and goals."
               color="bio"
             />
             <FeatureCard
@@ -207,6 +216,126 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               description="Practitioners can manage multiple clients, set targets, and collaborate on personalized optimization plans."
               color="electric"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Advanced Testing Section */}
+      <section className="py-20 px-6 bg-gradient-to-br from-neural/5 via-white to-bio/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="tag text-steel mb-3">ADVANCED DIAGNOSTICS</div>
+            <h2 className="mb-4">Premium Testing Integration</h2>
+            <p className="text-xl text-steel max-w-3xl mx-auto">
+              BioHax integrates cutting-edge epigenetic and gut health testing for unprecedented biological insights
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            {/* TrueAge Testing Card */}
+            <div className="bg-white border-2 border-neural/20 rounded-2xl p-8 hover:border-neural transition-all duration-300">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-14 h-14 rounded-xl gradient-neural flex items-center justify-center flex-shrink-0">
+                  <Activity className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-ink mb-2">TrueAge Testing (TruDiagnostic)</h3>
+                  <div className="tag text-neural inline-block">Epigenetic Biological Age</div>
+                </div>
+              </div>
+              
+              <p className="text-steel mb-6 leading-relaxed">
+                Determine your biological age by analyzing <strong>1 million+ methylation sites</strong> on your DNA. Get organ-specific aging scores and early dysfunction signals years before symptoms appear.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-neural flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-steel">Pace of Aging analysis comparing biological vs chronological age</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-neural flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-steel">System-specific aging scores (brain, heart, liver, immune, hormone)</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-neural flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-steel">Telomere length and inflammatory biomarker analysis</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-neural flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-steel">Actionable insights for personalized longevity interventions</span>
+                </div>
+              </div>
+
+              <div className="p-4 bg-neural/5 rounded-xl border border-neural/20">
+                <p className="text-xs text-steel leading-relaxed">
+                  <strong className="text-neural">BioHax Integration:</strong> Upload TrueAge results directly into your dashboard. Our dual-engine AI cross-references your epigenetic markers with current biomarkers and lifestyle data to generate precision longevity protocols.
+                </p>
+              </div>
+            </div>
+
+            {/* Geneva GI Effects Card */}
+            <div className="bg-white border-2 border-bio/20 rounded-2xl p-8 hover:border-bio transition-all duration-300">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-14 h-14 rounded-xl gradient-bio flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-ink mb-2">Geneva GI Effects Test</h3>
+                  <div className="tag text-bio inline-block">Comprehensive Gut Analysis</div>
+                </div>
+              </div>
+              
+              <p className="text-steel mb-6 leading-relaxed">
+                The most advanced gut health diagnostic available. Combined PCR, cultures, and microscopy analyze <strong>5 key biomarker areas</strong> to reveal hidden drivers of chronic issues.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-bio flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-steel">Maldigestion, Inflammation, Dysbiosis, Metabolite & Infection analysis</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-bio flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-steel">Pathogen subtyping with methanogens & H2S producer quantification</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-bio flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-steel">Root cause identification for IBS, bloating, fatigue, skin issues</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-bio flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-steel">Actionable protocols for supplements, probiotics & dietary adjustments</span>
+                </div>
+              </div>
+
+              <div className="p-4 bg-bio/5 rounded-xl border border-bio/20">
+                <p className="text-xs text-steel leading-relaxed">
+                  <strong className="text-bio">BioHax Integration:</strong> Automatically parse GI Effects results into trackable biomarkers. Dual-engine AI correlates gut health with systemic inflammation, mood, energy, and immune markers for targeted interventions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Synergy Banner */}
+          <div className="bg-gradient-to-r from-neural via-electric to-bio p-8 rounded-2xl text-white">
+            <div className="max-w-4xl mx-auto text-center">
+              <h3 className="text-white mb-4">The Ultimate Biohacking Combo</h3>
+              <p className="text-white/90 mb-6 leading-relaxed">
+                Combining <strong>TrueAge epigenetic assessment</strong> with <strong>Geneva GI Effects gut analysis</strong> gives you both a holistic aging snapshot and actionable gut biomarkers—two cornerstones for precision longevity protocols. Track interventions over time, optimize supplement stacks based on aging + gut markers, and watch your biological age reverse.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
+                  <span className="text-sm font-semibold">Longitudinal Tracking</span>
+                </div>
+                <div className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
+                  <span className="text-sm font-semibold">Cross-Referenced AI Analysis</span>
+                </div>
+                <div className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
+                  <span className="text-sm font-semibold">Practitioner Collaboration</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -232,7 +361,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             <StatCard
               value="87%"
               label="Protocol Adherence"
-              description="Members stick to their routines with AI-powered reminders and coaching"
+              description="Members stick to their routines with dual-engine AI reminders and coaching (OpenBioLLM + Gemini)"
               color="bio"
             />
             <StatCard
@@ -267,70 +396,48 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       <section id="pricing" className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-4">
-            <div className="tag text-steel mb-3">PRICING TIERS</div>
-            <h2 className="mb-4">Choose your performance level</h2>
+            <div className="tag text-steel mb-3">{t.landing.pricingSubtitle}</div>
+            <h2 className="mb-4">{t.landing.pricingTitle}</h2>
           </div>
 
           <div className="flex items-center justify-center gap-3 mb-12">
-            <span className="text-sm font-semibold text-steel">Monthly</span>
+            <span className="text-sm font-semibold text-steel">{t.landing.monthly}</span>
             <button className="relative w-14 h-8 rounded-full bg-electric transition-colors">
               <div className="absolute left-1 top-1 w-6 h-6 rounded-full bg-white transition-transform" />
             </button>
-            <span className="text-sm font-semibold text-ink">Annual</span>
-            <span className="tag text-bio">SAVE 20%</span>
+            <span className="text-sm font-semibold text-ink">{t.landing.annual}</span>
+            <span className="tag text-bio">{t.landing.savePercent}</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <PricingCard
-              tier="Explorer"
-              price="Free"
-              description="Perfect for getting started with longevity tracking"
-              features={[
-                'Up to 20 biomarkers',
-                'Basic wearable integrations',
-                'Weekly AI insights',
-                'Community access',
-                'Manual data entry',
-              ]}
+              tier={t.pricing.explorer.name}
+              price={t.pricing.explorer.price}
+              description={t.pricing.explorer.description}
+              features={t.pricing.explorer.features}
               color="electric"
-              ctaText="Start Free"
+              ctaText={t.landing.startFree}
               onCta={onGetStarted}
             />
             <PricingCard
-              tier="Biohacker"
-              price="$49"
-              period="/month"
-              description="For serious optimizers who want it all"
-              features={[
-                'Up to 150 biomarkers',
-                'All wearable integrations',
-                'Daily AI insights',
-                'Advanced protocols',
-                'Practitioner collaboration',
-                'Lab result parsing',
-                'Priority support',
-              ]}
+              tier={t.pricing.biohacker.name}
+              price={t.pricing.biohacker.price}
+              period={t.pricing.biohacker.period}
+              description={t.pricing.biohacker.description}
+              features={t.pricing.biohacker.features}
               color="neural"
               featured
-              ctaText="Start Trial"
+              ctaText={t.landing.startTrial}
               onCta={onGetStarted}
             />
             <PricingCard
-              tier="Longevity Pro"
-              price="$99"
-              period="/month"
-              description="Enterprise-grade for coaches & practitioners"
-              features={[
-                'Unlimited biomarkers',
-                'White-label options',
-                'Client management suite',
-                'API access',
-                'Custom protocols',
-                'Dedicated account manager',
-                '24/7 priority support',
-              ]}
+              tier={t.pricing.longevityPro.name}
+              price={t.pricing.longevityPro.price}
+              period={t.pricing.longevityPro.period}
+              description={t.pricing.longevityPro.description}
+              features={t.pricing.longevityPro.features}
               color="bio"
-              ctaText="Contact Sales"
+              ctaText={t.landing.contactSales}
               onCta={onGetStarted}
             />
           </div>
@@ -347,7 +454,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
             <TestimonialCard
-              quote="BioHax transformed how I manage my patients' longevity protocols. The AI insights save me hours every week."
+              quote="BioHax transformed how I manage my patients' longevity protocols. The dual-engine AI insights (OpenBioLLM + Gemini cross-verification) save me hours every week."
               author="Dr. Sarah Chen"
               role="Functional Medicine Physician"
               color="neural"
@@ -431,8 +538,8 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                   <Brain className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <div className="font-bold text-ink mb-1">AI-Powered</div>
-                  <div className="text-sm text-steel">OpenBioLLM insights</div>
+                  <div className="font-bold text-ink mb-1">Dual-Engine AI</div>
+                  <div className="text-sm text-steel">OpenBioLLM + Gemini</div>
                 </div>
               </div>
               <div className="flex flex-col items-center gap-3">
@@ -471,7 +578,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 <span className="text-xl font-bold text-snow">BioHax</span>
               </div>
               <p className="text-sm text-steel mb-6 leading-relaxed">
-                Your unified longevity and performance command center. Consolidate wearables, biomarkers, and AI coaching into one intelligent platform.
+                Your unified longevity and performance command center. Consolidate wearables, biomarkers, and dual-engine AI coaching (OpenBioLLM + Google Gemini) into one intelligent platform.
               </p>
               
               {/* Trust Badges */}
@@ -494,6 +601,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">For Individuals</a></li>
                 <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">For Coaches</a></li>
                 <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">For Clinics</a></li>
+                <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">Premium Tests</a></li>
                 <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">Integrations</a></li>
               </ul>
             </div>
@@ -515,25 +623,11 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               <ul className="space-y-3">
                 <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">Documentation</a></li>
                 <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">API Reference</a></li>
+                <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">TrueAge Guide</a></li>
+                <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">GI Effects Guide</a></li>
                 <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">Research Library</a></li>
                 <li><a href="#" className="text-sm text-steel hover:text-snow transition-colors">Community</a></li>
               </ul>
-            </div>
-
-            {/* Newsletter Column */}
-            <div>
-              <h4 className="font-bold text-snow mb-4">Stay Updated</h4>
-              <p className="text-sm text-steel mb-4">Get longevity insights and platform updates</p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-sm text-snow placeholder:text-steel focus:outline-none focus:border-electric"
-                />
-                <Button size="sm" variant="outline" className="bg-white/10 border-white/20 text-snow hover:bg-white/20">
-                  Subscribe
-                </Button>
-              </div>
             </div>
           </div>
 
