@@ -476,9 +476,31 @@ Available Widgets:
 - **Integration:** PDF upload → Dual-engine AI parsing → Protocol generation
 - **Frequency:** Baseline + follow-up after 3-6 months
 
+##### Direct Lab Integration (API)
+- Quest Diagnostics
+- LabCorp
+- Vibrant Wellness
+- Thorne
+- InsideTracker
+- WellnessFX
 
+#### Genetic Testing
 
+##### 23andMe
+- Upload raw data file
+- Extract health-related SNPs
+- AI interpretation of variants
+- Lifestyle recommendations
 
+##### AncestryDNA
+- Upload raw data
+- Health risk analysis
+- Nutrigenomics insights
+
+##### Sequencing.com
+- Whole genome sequencing
+- Clinical variant analysis
+- Pharmacogenomics
 
 #### Manual Upload
 - PDF lab reports (OCR + AI parsing)
