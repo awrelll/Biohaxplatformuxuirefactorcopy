@@ -3,7 +3,7 @@ import BentoGrid from './BentoGrid';
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen mesh-gradient pt-28 pb-20 px-6">
+    <div className="min-h-screen mesh-gradient py-12 px-6">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Welcome Section */}
         <div className="text-center mb-12">

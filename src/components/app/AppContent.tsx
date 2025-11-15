@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Activity, Users, Zap, Settings, Link2, Home, Dumbbell, Apple } from 'lucide-react';
+import { Activity, Users, Zap, Settings, Link2, Home, Dumbbell, Apple, Shield } from 'lucide-react';
 import { Toaster } from '../ui/sonner';
 import VerticalNav from '../layout/VerticalNav';
 import CommandBar from '../layout/CommandBar';
@@ -14,10 +14,11 @@ import SettingsPage from '../settings/SettingsPage';
 import IntegrationsPage from '../integrations/IntegrationsPage';
 import GymWorkoutCreator from '../gym/GymWorkoutCreator';
 import NutritionView from '../nutrition/NutritionView';
+import AdminDashboard from '../admin/AdminDashboard';
 import { useTranslation } from '../../lib/i18n/LanguageContext';
 
 type AppState = 'landing' | 'auth' | 'authenticated';
-type View = 'dashboard' | 'protocols' | 'gym' | 'nutrition' | 'practitioner' | 'community' | 'settings' | 'integrations';
+type View = 'dashboard' | 'protocols' | 'gym' | 'nutrition' | 'practitioner' | 'community' | 'settings' | 'integrations' | 'admin';
 
 export default function AppContent() {
   const [appState, setAppState] = useState<AppState>('landing');
@@ -34,7 +35,24 @@ export default function AppContent() {
     { id: 'community' as View, label: t.nav.community, icon: Zap },
     { id: 'integrations' as View, label: t.nav.integrations, icon: Link2 },
     { id: 'settings' as View, label: t.nav.settings, icon: Settings },
+    { id: 'admin' as View, label: 'Admin', icon: Shield },
   ];
+
+  const handleStartOnboarding = () => {
+    console.log('Starting onboarding...');
+    setShowOnboarding(true);
+  };
+
+  const handleOpenNotifications = () => {
+    console.log('Opening notifications...');
+    // For now, just navigate to dashboard - you can add a notifications panel later
+    setCurrentView('dashboard');
+  };
+
+  const handleOpenProfile = () => {
+    console.log('Opening profile...');
+    setCurrentView('settings');
+  };
 
   // Landing/Auth Flow
   if (appState === 'landing') {
@@ -87,6 +105,8 @@ export default function AppContent() {
         return <SettingsPage />;
       case 'integrations':
         return <IntegrationsPage />;
+      case 'admin':
+        return <AdminDashboard />;
       default:
         return <Dashboard />;
     }
@@ -102,10 +122,14 @@ export default function AppContent() {
       />
 
       {/* Command Bar */}
-      <CommandBar onNavigate={setCurrentView} />
+      <CommandBar 
+        onStartOnboarding={handleStartOnboarding}
+        onOpenNotifications={handleOpenNotifications}
+        onOpenProfile={handleOpenProfile}
+      />
 
       {/* Main Content */}
-      <main>
+      <main className="pl-28 pt-24">
         {renderView()}
       </main>
 

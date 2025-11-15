@@ -3,9 +3,26 @@ import { LucideIcon } from 'lucide-react';
 
 interface CommandBarProps {
   onStartOnboarding: () => void;
+  onOpenNotifications?: () => void;
+  onOpenProfile?: () => void;
 }
 
-export default function CommandBar({ onStartOnboarding }: CommandBarProps) {
+export default function CommandBar({ onStartOnboarding, onOpenNotifications, onOpenProfile }: CommandBarProps) {
+  const handleNotifications = () => {
+    console.log('Notifications clicked');
+    onOpenNotifications?.();
+  };
+
+  const handleProfile = () => {
+    console.log('Profile clicked');
+    onOpenProfile?.();
+  };
+
+  const handleGetStarted = () => {
+    console.log('Get Started clicked from CommandBar');
+    onStartOnboarding();
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-6 pt-6">
       <div className="max-w-7xl mx-auto">
@@ -27,7 +44,7 @@ export default function CommandBar({ onStartOnboarding }: CommandBarProps) {
           {/* Quick Actions */}
           <div className="flex items-center gap-2">
             <button
-              onClick={onStartOnboarding}
+              onClick={handleGetStarted}
               className="px-5 py-2.5 rounded-xl gradient-electric text-void font-bold hover:scale-105 transition-transform shadow-lg"
             >
               <div className="flex items-center gap-2">
@@ -36,14 +53,20 @@ export default function CommandBar({ onStartOnboarding }: CommandBarProps) {
               </div>
             </button>
 
-            <button className="relative w-11 h-11 rounded-xl bg-white hover:bg-pearl transition-colors flex items-center justify-center">
+            <button 
+              onClick={handleNotifications}
+              className="relative w-11 h-11 rounded-xl bg-white hover:bg-pearl transition-colors flex items-center justify-center"
+            >
               <Bell className="w-5 h-5 text-ink" />
               <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full gradient-pulse flex items-center justify-center">
                 <span className="text-xs font-bold text-white">3</span>
               </div>
             </button>
 
-            <button className="w-11 h-11 rounded-xl gradient-spectrum flex items-center justify-center hover:scale-105 transition-transform">
+            <button 
+              onClick={handleProfile}
+              className="w-11 h-11 rounded-xl gradient-spectrum flex items-center justify-center hover:scale-105 transition-transform"
+            >
               <span className="text-sm font-bold text-white">AR</span>
             </button>
           </div>
